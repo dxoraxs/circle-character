@@ -27,6 +27,7 @@ namespace Initialization
         private async UniTaskVoid StartInitialization()
         {
             await WaitConfigLoad();
+            await WaitPanelsLoad();
             await WaitLoadScene();
         }
 
@@ -35,7 +36,7 @@ namespace Initialization
             await _iocFactory.Create<InitializeConfigsServiceTask>().LoadAsync();
         }
 
-        private async UniTaskVoid WaitPanelsLoad()
+        private async UniTask WaitPanelsLoad()
         {
             await _iocFactory.Create<InitializePanelServiceTask>().LoadAsync();
         }
