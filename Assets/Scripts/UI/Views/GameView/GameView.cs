@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-namespace CircleCharacter.Constants.UI
+namespace CircleCharacter.UI.Views.GameView
 {
     public class GameView : BaseView
     {

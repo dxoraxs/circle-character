@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using CircleCharacter.UI.Views;
+using CircleCharacter.UI.Views.GameView;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace CircleCharacter.Constants.UI
+namespace CircleCharacter.UI
 {
     public class PanelService : MonoBehaviour, IPanelService
     {

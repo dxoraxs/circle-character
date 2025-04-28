@@ -1,8 +1,9 @@
 ﻿using System;
+using CircleCharacter.UI.Views;
 using Cysharp.Threading.Tasks;
 using VContainer.Unity;
 
-namespace CircleCharacter.Constants.UI
+namespace CircleCharacter.UI
 {
     public interface IPanelService
     {

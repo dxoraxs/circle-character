@@ -1,12 +1,14 @@
-﻿namespace CircleCharacter.Constants.UI
+﻿namespace CircleCharacter.UI.Views
 {
     public class BasePresenter<TView> where TView : BaseView
     {
+        protected readonly IPanelService PanelService;
         protected readonly TView View;
 
-        protected BasePresenter(TView view)
+        protected BasePresenter(IPanelService panelService)
         {
-            View = view;
+            PanelService = panelService;
+            View = PanelService.Get<TView>();
         }
     }
 }

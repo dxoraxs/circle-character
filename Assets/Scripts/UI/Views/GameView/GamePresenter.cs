@@ -1,8 +1,11 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using UniRx;
+using UnityEngine;
 using UnityEngine.Scripting;
+using VContainer.Unity;
 
-namespace CircleCharacter.Constants.UI
+namespace CircleCharacter.UI.Views.GameView
 {
     public class GamePresenter : BasePresenter<GameView>
     {
@@ -12,11 +15,10 @@ namespace CircleCharacter.Constants.UI
 
         public IReadOnlyReactiveProperty<bool> LeftDirectionStream => _leftDirectionButtonIsPressed;
         public IReadOnlyReactiveProperty<bool> RightDirectionStream => _rightDirectionButtonIsPressed;
-        
+
         [Preserve]
-        public GamePresenter(GameView view) : base(view)
+        public GamePresenter(IPanelService panelService) : base(panelService)
         {
-            view.Initialize(this);
         }
 
         public void OnClickJump()
@@ -32,6 +34,14 @@ namespace CircleCharacter.Constants.UI
         public void OnRightDirectionPressed(bool value)
         {
             _rightDirectionButtonIsPressed.Value = value;
+        }
+
+        public UniTask Initialize()
+        {
+            View.Initialize(this);
+            View.SetEnabled(true);
+
+            return UniTask.CompletedTask;
         }
     }
 }

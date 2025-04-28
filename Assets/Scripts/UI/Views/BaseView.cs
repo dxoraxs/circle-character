@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CircleCharacter.Constants.UI
+namespace CircleCharacter.UI.Views
 {
     [RequireComponent(typeof(CanvasGroup))]
     public abstract class BaseView : MonoBehaviour
