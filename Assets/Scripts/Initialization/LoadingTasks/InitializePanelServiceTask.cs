@@ -1,5 +1,5 @@
 ﻿using CircleCharacter.Configs;
-using CircleCharacter.Constants.UI;
+using CircleCharacter.UI;
 using Cysharp.Threading.Tasks;
 using UnityEngine.Scripting;
 
