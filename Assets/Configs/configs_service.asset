@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: configs_service
   m_EditorClassIdentifier: 
   _characterSettings: {fileID: 11400000, guid: 247ac5f7ec063d64f9865d4b40aa681f, type: 2}
+  _prefabsConfig: {fileID: 11400000, guid: cdb18e32fd6f3ea438c45834ac2e05ae, type: 2}
+  _cameraSettings: {fileID: 11400000, guid: 5fc089b932dcb97478df1df309625c0e, type: 2}

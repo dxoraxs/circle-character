@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4c00ab5250342248da07c7645505001, type: 3}
-  m_Name: character_settings
+  m_Script: {fileID: 11500000, guid: 5175febdeb61499abfa3d837f00572d7, type: 3}
+  m_Name: camera_settings
   m_EditorClassIdentifier: 
-  <TorqueForce>k__BackingField: 40
-  <MaxRotateSpeed>k__BackingField: 180
-  <JumpForce>k__BackingField: 8
+  <Speed>k__BackingField: 10
