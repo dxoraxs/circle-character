@@ -12,6 +12,7 @@ namespace CircleCharacter.GameCore.Player
     {
         private readonly ICharacterManager _characterManager;
         private readonly GamePresenter _gamePresenter;
+        private readonly GroundHandler _groundHandler;
         private readonly IConfigsService _configsService;
         private readonly Rigidbody2D _character;
         private readonly CharacterSettings _characterSettings;
@@ -20,11 +21,13 @@ namespace CircleCharacter.GameCore.Player
         private bool _rightPressed;
 
         [Preserve]
-        public PlayerMovement(ICharacterManager characterManager, GamePresenter gamePresenter, IConfigsService configsService)
+        public PlayerMovement(ICharacterManager characterManager, GamePresenter gamePresenter, IConfigsService configsService,
+            GroundHandler groundHandler)
         {
             _characterManager = characterManager;
             _gamePresenter = gamePresenter;
             _configsService = configsService;
+            _groundHandler = groundHandler;
 
             _characterSettings = _configsService.Get<CharacterSettings>();
             _character = _characterManager.PlayerContainer.Rigidbody;
@@ -76,7 +79,10 @@ namespace CircleCharacter.GameCore.Player
 
         private void OnClickJumpButton()
         {
-            _character.AddForce(Vector2.up * _characterSettings.JumpForce, ForceMode2D.Impulse);
+            if (_groundHandler.IsGrounded)
+            {
+                _character.AddForce(Vector2.up * _characterSettings.JumpForce, ForceMode2D.Impulse);
+            }
         }
 
         public void Dispose()

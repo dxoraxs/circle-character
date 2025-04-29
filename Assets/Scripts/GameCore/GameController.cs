@@ -16,6 +16,7 @@ namespace CircleCharacter.Constants.GameCore
         private readonly ICharacterManager _characterManager;
         private CameraController _cameraController;
         private PlayerMovement _playerMovement;
+        private GroundHandler _groundHandler;
 
         [Preserve]
         public GameController(IIocFactory iocFactory, ILevelController levelController, ICharacterManager characterManager)
@@ -39,7 +40,8 @@ namespace CircleCharacter.Constants.GameCore
 
             var gamePresenter = _iocFactory.Create<GamePresenter>();
             await gamePresenter.Initialize();
-            _playerMovement = _iocFactory.Create<PlayerMovement, GamePresenter>(gamePresenter);
+            _groundHandler = _iocFactory.Create<GroundHandler>();
+            _playerMovement = _iocFactory.Create<PlayerMovement, GamePresenter, GroundHandler>(gamePresenter, _groundHandler);
             _cameraController = _iocFactory.Create<CameraController>();
         }
         

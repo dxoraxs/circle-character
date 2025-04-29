@@ -6,8 +6,8 @@ namespace CircleCharacter.Configs.Data
     public class CharacterSettings : ScriptableObject
     {
         [field: SerializeField] public float TorqueForce { get; private set; }
-        //[field: SerializeField] public float MoveForce { get; private set; }
         [field: SerializeField] public float MaxRotateSpeed { get; private set; }
         [field: SerializeField] public float JumpForce { get; private set; }
+        [field: SerializeField] public float VerticalOffsetGroundCast { get; private set; }
     }
 }

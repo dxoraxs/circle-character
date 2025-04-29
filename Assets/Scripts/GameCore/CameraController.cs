@@ -30,7 +30,7 @@ namespace CircleCharacter.Constants.GameCore
             _targetFollow = _characterManager.PlayerContainer.transform;
             _defaultZPosition = _camera.transform.position.z;
 
-            Observable.EveryUpdate().Subscribe(_ => Update()).AddTo(_compositeDisposable);
+            Observable.EveryLateUpdate().Subscribe(_ => Update()).AddTo(_compositeDisposable);
         }
 
         private void Update()
