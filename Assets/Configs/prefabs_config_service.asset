@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc5e34175202497d90b41e45c00feb5a, type: 3}
   m_Name: prefabs_config_service
   m_EditorClassIdentifier: 
-  <PlayerPrefab>k__BackingField: {fileID: 223450972988874636, guid: 30460ea01f30c1d42967571f2e79ef87, type: 3}
+  <CharacterPrefab>k__BackingField: {fileID: 223450972988874636, guid: 30460ea01f30c1d42967571f2e79ef87, type: 3}
   <LevelContainer>k__BackingField: {fileID: 8999075038003979672, guid: 891de539d30af1f47ade09ed635a4e4f, type: 3}

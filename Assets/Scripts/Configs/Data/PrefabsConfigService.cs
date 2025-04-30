@@ -9,7 +9,7 @@ namespace CircleCharacter.Configs
         order = 0)]
     public class PrefabsConfig : ScriptableObject
     {
-        [field: SerializeField] public PlayerContainer PlayerPrefab { get; private set; }
+        [field: SerializeField] public CharacterContainer CharacterPrefab { get; private set; }
         [field: SerializeField] public LevelContainer LevelContainer { get; private set; }
     }
 }

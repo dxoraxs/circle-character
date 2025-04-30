@@ -4,26 +4,22 @@ using CircleCharacter.GameCore.Player;
 using CircleCharacter.UI.Views.GameView;
 using Cysharp.Threading.Tasks;
 using Initialization.LoadingTasks;
+using UnityEngine;
 using UnityEngine.Scripting;
 using VContainer.Unity;
 
-namespace CircleCharacter.Constants.GameCore
+namespace CircleCharacter.GameCore
 {
     public class GameController : IInitializable
     {
         private readonly IIocFactory _iocFactory;
         private readonly ILevelController _levelController;
-        private readonly ICharacterManager _characterManager;
-        private CameraController _cameraController;
-        private PlayerMovement _playerMovement;
-        private GroundHandler _groundHandler;
-
+        
         [Preserve]
-        public GameController(IIocFactory iocFactory, ILevelController levelController, ICharacterManager characterManager)
+        public GameController(IIocFactory iocFactory, ILevelController levelController)
         {
             _iocFactory = iocFactory;
             _levelController = levelController;
-            _characterManager = characterManager;
         }
 
         public void Initialize()
@@ -36,13 +32,14 @@ namespace CircleCharacter.Constants.GameCore
             await WaitConfigLoad();
             await WaitPanelsLoad();
             _levelController.SpawnLevel();
-            _characterManager.Initialize();
 
-            var gamePresenter = _iocFactory.Create<GamePresenter>();
-            await gamePresenter.Initialize();
-            _groundHandler = _iocFactory.Create<GroundHandler>();
-            _playerMovement = _iocFactory.Create<PlayerMovement, GamePresenter, GroundHandler>(gamePresenter, _groundHandler);
-            _cameraController = _iocFactory.Create<CameraController>();
+            await _iocFactory.Create<GamePresenter>().Initialize();
+            
+            var characterInstaller = _iocFactory.Create<CharacterInstaller>();
+            var character = characterInstaller.Create(_levelController.SpawnPlayerPoint);
+
+            var playerInstaller = _iocFactory.Create<PlayerInstaller>();
+            playerInstaller.SetNewPlayer(character);
         }
         
         private async UniTask WaitConfigLoad()

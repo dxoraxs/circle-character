@@ -10,7 +10,7 @@ namespace CircleCharacter.Constants.GameCore.Level
         private readonly IConfigsService _configsService;
         private LevelContainer _levelContainer;
 
-        public Transform SpawnPlayerPoint => _levelContainer.SpawnPoint;
+        public Vector3 SpawnPlayerPoint => _levelContainer.SpawnPoint.position;
 
         [Preserve]
         public LevelController(IConfigsService configsService)

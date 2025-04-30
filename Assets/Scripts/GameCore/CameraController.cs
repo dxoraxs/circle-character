@@ -12,28 +12,34 @@ namespace CircleCharacter.Constants.GameCore
     {
         private readonly Camera _camera;
         private readonly IConfigsService _configsService;
-        private readonly ICharacterManager _characterManager;
         
         private readonly CameraSettings _cameraSettings;
-        private readonly Transform _targetFollow;
-        private readonly CompositeDisposable _compositeDisposable = new();
         private readonly float _defaultZPosition;
-        
+
+        private IDisposable _targetFollowStream;
+        private Transform _targetFollow;
+
         [Preserve]
-        public CameraController(Camera camera, IConfigsService configsService, ICharacterManager characterManager)
+        public CameraController(Camera camera, IConfigsService configsService)
         {
             _camera = camera;
             _configsService = configsService;
-            _characterManager = characterManager;
 
             _cameraSettings = _configsService.Get<CameraSettings>();
-            _targetFollow = _characterManager.PlayerContainer.transform;
             _defaultZPosition = _camera.transform.position.z;
-
-            Observable.EveryLateUpdate().Subscribe(_ => Update()).AddTo(_compositeDisposable);
         }
 
-        private void Update()
+        public void SetTarget(Transform target)
+        {
+            _targetFollowStream?.Dispose();
+
+            if (target == null) return;
+
+            _targetFollow = target;
+            _targetFollowStream = Observable.EveryLateUpdate().Subscribe(_ => OnLateUpdate());
+        }
+
+        private void OnLateUpdate()
         {
             var targetPosition = _targetFollow.position;
             targetPosition.z = _defaultZPosition;
@@ -42,7 +48,7 @@ namespace CircleCharacter.Constants.GameCore
 
         public void Dispose()
         {
-            _compositeDisposable?.Dispose();
+            _targetFollowStream?.Dispose();
         }
     }
 }
