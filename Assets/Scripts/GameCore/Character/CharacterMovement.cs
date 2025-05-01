@@ -36,7 +36,7 @@ namespace CircleCharacter.GameCore.Player
             _moveDirection = direction;
         }
 
-        public void TryJumpButton()
+        public void TryJump()
         {
             if (_groundHandler.IsGrounded)
             {
@@ -46,6 +46,11 @@ namespace CircleCharacter.GameCore.Player
         }
 
         private void FixedUpdate()
+        {
+            Move();
+        }
+
+        private void Move()
         {
             _rigidbody.AddTorque(_moveDirection * _characterSettings.TorqueForce, ForceMode2D.Force);
 

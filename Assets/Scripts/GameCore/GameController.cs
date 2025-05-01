@@ -39,7 +39,7 @@ namespace CircleCharacter.GameCore
             var character = characterInstaller.Create(_levelController.SpawnPlayerPoint);
 
             var playerInstaller = _iocFactory.Create<PlayerInstaller>();
-            playerInstaller.SetNewPlayer(character);
+            playerInstaller.Create(character);
         }
         
         private async UniTask WaitConfigLoad()

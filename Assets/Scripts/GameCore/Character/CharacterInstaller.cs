@@ -24,7 +24,7 @@ namespace CircleCharacter.GameCore.Player
 
         public Character Create(Vector3 position)
         {
-            var characterContainer = SpawnCharacter(position);
+            var characterContainer = InstantiateCharacterContainer(position);
             var groundHandler = _iocFactory.Create<GroundHandler, Transform, float>(characterContainer.transform, characterContainer.Collider.radius);
             var playerMovement = _iocFactory.Create<CharacterMovement, Rigidbody2D, GroundHandler>(characterContainer.Rigidbody, groundHandler);
 
@@ -32,7 +32,7 @@ namespace CircleCharacter.GameCore.Player
             return newCharacter;
         }
 
-        private CharacterContainer SpawnCharacter(Vector3 position)
+        private CharacterContainer InstantiateCharacterContainer(Vector3 position)
         {
             var playerPrefab = _configsService.Get<PrefabsConfig>().CharacterPrefab;
             var characterContainer = Object.Instantiate(playerPrefab);
