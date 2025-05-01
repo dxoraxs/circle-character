@@ -8,7 +8,7 @@ using VContainer.Unity;
 
 namespace CircleCharacter.UI.Views.GameView
 {
-    public class GamePresenter : BasePresenter<GameView>
+    public class GamePresenter : BasePresenter<GameView>, IGamePresenter
     {
         private readonly IInputController _inputController;
         private bool _leftDirectionButtonIsPressed;

@@ -11,7 +11,7 @@ namespace CircleCharacter.UI.Views.GameView
         [SerializeField] private CustomButton _leftDirectionButton;
         [SerializeField] private CustomButton _rightDirectionButton;
         [SerializeField] private CustomButton _jumpButton;
-        private GamePresenter _gamePresenter;
+        private IGamePresenter _gamePresenter;
 
         private void Start()
         {
@@ -24,7 +24,7 @@ namespace CircleCharacter.UI.Views.GameView
             _jumpButton.OnPointerClickEvent += OnClickJumpButton;
         }
  
-        public void Initialize(GamePresenter gamePresenter)
+        public void Initialize(IGamePresenter gamePresenter)
         {
             _gamePresenter = gamePresenter;
         }
